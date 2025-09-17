@@ -510,6 +510,24 @@
                 </div>
             </div>
         </section>
+           <div style="text-align: center; padding: 2rem;">
+            <div style="margin: 2rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 107, 53, 0.2);">
+                <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">🎬 Featured Movie: Disney-Pixar's "Coco"</h3>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px; max-width: 250px;">
+                        <img src="https://lumiere-a.akamaihd.net/v1/images/p_coco_19736_fd5fa537.jpeg" 
+                             alt="Disney-Pixar's Coco Movie Poster" 
+                             style="width: 100%; max-width: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);"/>
+                    </div>
+                    </div>
+                    <div style="flex: 2; min-width: 250px; text-align: left;">
+                        <p style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.6;">Join Miguel on his magical journey to the Land of the Dead in this heartwarming tale about family, dreams, and the power of music.</p>
+                        <p style="color: #666; font-style: italic;">🏆 Academy Award Winner for Best Animated Feature</p>
+                        <p style="margin-top: 1rem;"><strong>Perfect for:</strong> All ages • Family-friendly • 105 minutes</p>
+                        <p style="margin-top: 0.5rem;"><strong>Themes:</strong> Family bonds, following your dreams, celebrating heritage</p>
+                    </div>
+                </div>
+            </div>
         <section id="register">
             <h2>📝 Registration</h2>
             <div style="text-align: center; padding: 2rem;">
@@ -542,30 +560,10 @@
                 </div>
             </div>
         </section>
-
-        <div style="text-align: center; padding: 2rem;">
-            <div style="margin: 2rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">🎬 Featured Movie: Disney-Pixar's "Coco"</h3>
-                <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px; max-width: 250px;">
-                        <img src="https://lumiere-a.akamaihd.net/v1/images/p_coco_19736_fd5fa537.jpeg" 
-                             alt="Disney-Pixar's Coco Movie Poster" 
-                             style="width: 100%; max-width: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);"/>
-                    </div>
-                    </div>
-                    <div style="flex: 2; min-width: 250px; text-align: left;">
-                        <p style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.6;">Join Miguel on his magical journey to the Land of the Dead in this heartwarming tale about family, dreams, and the power of music.</p>
-                        <p style="color: #666; font-style: italic;">🏆 Academy Award Winner for Best Animated Feature</p>
-                        <p style="margin-top: 1rem;"><strong>Perfect for:</strong> All ages • Family-friendly • 105 minutes</p>
-                        <p style="margin-top: 0.5rem;"><strong>Themes:</strong> Family bonds, following your dreams, celebrating heritage</p>
-                    </div>
-                </div>
-            </div>
             <p style="font-size: 1.5rem; color: #2d1810; font-weight: bold;">
                 🍂 Can't wait to see you there! Let's make this fall unforgettable! 🎃
             </p>
         </div>
-    </div>
 
     <footer>
         <p>&copy; 2025 Riverview Elementary Fall Festival. All rights reserved.</p>
@@ -633,4 +631,4 @@
         }
     </script>
 </body>
-</html>
+
