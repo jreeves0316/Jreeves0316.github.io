@@ -312,7 +312,7 @@
                 <div class="detail-card">
                     <div class="emoji">⏰</div>
                     <h3>Time</h3>
-                    <p><strong>5:30 PM - 8:45 PM</strong>
+                    <p><strong>5:30 PM - 8:45 PM</strong><br>Gates open at 5:15 PM</p>
                 </div>
                 <div class="detail-card">
                     <div class="emoji">📍</div>
