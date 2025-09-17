@@ -453,6 +453,11 @@
                     <h4>Apple Toss</h4>
                     <p>Toss apples into baskets and win prizes - a classic autumn game!</p>
                 </div>
+                <div class="activity-card">
+                    <div class="emoji">🍎</div>
+                    <h4>Mini Pumpkin Tic-Tac-Toe</h4>
+                    <p>Grab a your different color mini pumpkins for a fun game of tic-tac-toe with your friends!</p>
+                </div>
             </div>
         </section>
 
