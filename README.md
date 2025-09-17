@@ -312,7 +312,7 @@
                 <div class="detail-card">
                     <div class="emoji">⏰</div>
                     <h3>Time</h3>
-                    <p><strong>5:30 PM - 8:45 PM</strong><br>Gates open at 5:15 PM</p>
+                    <p><strong>5:30 PM - 8:45 PM</strong>
                 </div>
                 <div class="detail-card">
                     <div class="emoji">📍</div>
@@ -333,7 +333,7 @@
             <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
                 <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
                     🏆 <strong>Dress up in your favorite fall or Halloween costume!</strong><br>
-                    Winners will be drawn at random at the end of the festival!
+                    Winner will be drawn at random before the movie!
                 </p>
             </div>
 
@@ -341,22 +341,22 @@
                 <div class="activity-card">
                     <div class="emoji">👻</div>
                     <h4>All Ages Welcome</h4>
-                    <p>Kids, adults, and families - everyone can participate in our fun costume competition!</p>
+                    <p>Every kid can participate in our fun costume competition!</p>
                 </div>
                 <div class="activity-card">
                     <div class="emoji">🎃</div>
-                    <h4>Fall & Halloween Themes</h4>
-                    <p>Pumpkins, scarecrows, witches, superheroes, animals - any costume is welcome!</p>
+                    <h4>Age appropriate costumes only, please</h4>
+                    <p>Pumpkins, scarecrows, witches, superheroes, animals (Just nothing gory or violent)</p>
                 </div>
                 <div class="activity-card">
                     <div class="emoji">🎟️</div>
                     <h4>Easy Entry</h4>
-                    <p>Just show up in costume! We'll take your photo and enter you into our random drawing.</p>
+                    <p>Just show up in costume and enter you into our random drawing!</p>
                 </div>
                 <div class="activity-card">
                     <div class="emoji">🏆</div>
                     <h4>Prize Drawing</h4>
-                    <p>Winners will be randomly selected and announced at 8:30 PM during our closing ceremony!</p>
+                    <p>Winners will be randomly selected and announced at 6:55 PM during our closing ceremony!</p>
                 </div>
             </div>
 
@@ -367,14 +367,13 @@
                         <p><strong>📝 How to Enter:</strong><br>
                         • Wear your costume to the festival<br>
                         • Visit our registration table<br>
-                        • Get your photo taken<br>
                         • Receive your entry ticket</p>
                     </div>
                     <div>
                         <p><strong>⏰ Important Times:</strong><br>
-                        • Entry: 5:30 PM - 8:00 PM<br>
+                        • Entry: 5:30 PM - 6:55 PM<br>
                         • Photo station open all evening<br>
-                        • Winner announcement: 8:30 PM<br>
+                        • Winner announcement: 6:55 PM<br>
                         • Must be present to win!</p>
                     </div>
                 </div>
@@ -404,7 +403,7 @@
                 <div class="activity-card">
                     <div class="emoji">🎵</div>
                     <h4>Fall Music & Dancing</h4>
-                    <p>Dance to autumn tunes and enjoy live musical entertainment throughout the evening!</p>
+                    <p>Dance to autumn tunes throughout the evening!</p>
                 </div>
                 <div class="activity-card">
                     <div class="emoji">🎯</div>
@@ -478,8 +477,8 @@
                     </div>
                     <div class="activity-card">
                         <div class="emoji">🍿</div>
-                        <h4>Gourmet Popcorn Truck</h4>
-                        <p>Freshly popped popcorn in amazing flavors - caramel corn, cheese, kettle corn, and specialty mixes!</p>
+                        <h4>Truck TBD</h4>
+                        <p>Truck TBD</p>
                     </div>
                 </div>
             </div>
@@ -489,7 +488,7 @@
                 <div class="activities-grid">
                     <div class="activity-card">
                         <div class="emoji">🍎</div>
-                        <h4>Caramel Apples</h4>
+                        <h4>Create your own caramel apple slices!</h4>
                         <p>Sweet, crisp apples covered in rich caramel - a classic fall treat that's always a crowd favorite!</p>
                     </div>
                     <div class="activity-card">
@@ -505,67 +504,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="costume">
-            <h2>🎭 Costume Competition</h2>
-            
-            <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    🏆 <strong>Dress up in your favorite fall or Halloween costume!</strong><br>
-                    Winners will be drawn at random at the end of the festival!
-                </p>
-            </div>
-
-            <div class="activities-grid">
-                <div class="activity-card">
-                    <div class="emoji">👻</div>
-                    <h4>All Ages Welcome</h4>
-                    <p>Kids, adults, and families - everyone can participate in our fun costume competition!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎃</div>
-                    <h4>Fall & Halloween Themes</h4>
-                    <p>Pumpkins, scarecrows, witches, superheroes, animals - any costume is welcome!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎟️</div>
-                    <h4>Easy Entry</h4>
-                    <p>Just show up in costume! We'll take your photo and enter you into our random drawing.</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🏆</div>
-                    <h4>Prize Drawing</h4>
-                    <p>Winners will be randomly selected and announced at 8:30 PM during our closing ceremony!</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">🎪 Contest Details</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left;">
-                    <div>
-                        <p><strong>📝 How to Enter:</strong><br>
-                        • Wear your costume to the festival<br>
-                        • Visit our registration table<br>
-                        • Get your photo taken<br>
-                        • Receive your entry ticket</p>
-                    </div>
-                    <div>
-                        <p><strong>⏰ Important Times:</strong><br>
-                        • Entry: 5:30 PM - 8:00 PM<br>
-                        • Photo station open all evening<br>
-                        • Winner announcement: 8:30 PM<br>
-                        • Must be present to win!</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 107, 53, 0.1); border-radius: 8px;">
-                    <p style="font-weight: 600; color: #2d1810; margin: 0;">
-                        💡 <strong>Costume Tips:</strong> Keep it comfortable for outdoor activities and easy to move in for games and dancing!
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <section id="register">
             <h2>📝 Registration</h2>
             <div style="text-align: center; padding: 2rem;">
