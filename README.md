@@ -332,7 +332,7 @@
             
             <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
                 <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    🏆 <strong>Kids only! Dress up in your favorite fall costume!</strong><br>
+                    🏆 <strong>Kids 12 and under only for the competition, but all are welcome to dress up in your favorite fall costume!</strong><br>
                     Winners will be drawn at random before the movie starts!
                 </p>
             </div>
@@ -341,7 +341,7 @@
                 <div class="activity-card">
                     <div class="emoji">👶</div>
                     <h4>Kids Only</h4>
-                    <p>This fun costume competition is exclusively for children - all ages of kids welcome to participate!</p>
+                    <p>This fun costume competition is exclusively for children 12 and under but all ages of "kids" welcome to participate!</p>
                 </div>
                 <div class="activity-card">
                     <div class="emoji">🎃</div>
@@ -367,15 +367,13 @@
                         <p><strong>📝 How to Enter:</strong><br>
                         • Kids wear costume to the festival<br>
                         • Visit our registration table<br>
-                        • Receive your entry ticket<br>
-                        • No photos required!</p>
+                        • Receive your entry ticket</p>
                     </div>
                     <div>
                         <p><strong>⏰ Important Times:</strong><br>
                         • Entry: 5:30 PM - 6:45 PM<br>
                         • Winner announcement: 6:55 PM<br>
-                        • Must be present to win!<br>
-                        • Kids only competition</p>
+                        • Must be present to win!</p>
                     </div>
                 </div>
                 
