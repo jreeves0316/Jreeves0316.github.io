@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -160,7 +162,7 @@
         /* Event details grid */
         .event-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             margin: 2rem 0;
         }
@@ -197,7 +199,7 @@
         /* Activities grid */
         .activities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -258,11 +260,20 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .event-details, .activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .subtitle { font-size: 1.2rem; }
             nav a { margin: 0.5rem; }
             .container { padding: 1rem; }
+            .event-details, .activities-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -618,7 +629,7 @@
                 🍂 Can't wait to see you there! Let's make this fall unforgettable! 🎃
             </p>
         </div>
-    </div>
+    
 
     <footer>
         <p>&copy; 2025 Riverview Elementary Fall Festival. All rights reserved.</p>
@@ -686,4 +697,3 @@
         }
     </script>
 </body>
-</html>
