@@ -312,7 +312,7 @@
                 <div class="detail-card">
                     <div class="emoji">⏰</div>
                     <h3>Time</h3>
-                    <p><strong>5:30 PM - 8:45 PM</strong><br>5:30-7 - Food/Games/Activities</p>
+                    <p><strong>5:30 PM - 8:45 PM</strong><br>5:30-7 Food/Games/Activities</p>
                 </div>
                 <div class="detail-card">
                     <div class="emoji">📍</div>
