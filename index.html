@@ -1,550 +1,267 @@
-import React, { useState, useEffect } from 'react';
-import { Snowflake, Trophy, Star, Gift } from 'lucide-react';
-
-const ChristmasTrivia = () => {
-  const [gameStarted, setGameStarted] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [team1Score, setTeam1Score] = useState(0);
-  const [team2Score, setTeam2Score] = useState(0);
-  const [team1Name, setTeam1Name] = useState('Team 1');
-  const [team2Name, setTeam2Name] = useState('Team 2');
-  const [currentTeam, setCurrentTeam] = useState(1);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [fillInAnswer, setFillInAnswer] = useState('');
-  const [matchingAnswers, setMatchingAnswers] = useState({});
-  const [gameOver, setGameOver] = useState(false);
-  const [snowflakes, setSnowflakes] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(30);
-  const [timerActive, setTimerActive] = useState(false);
-
-  useEffect(() => {
-    const flakes = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      animationDuration: 3 + Math.random() * 5,
-      animationDelay: Math.random() * 5,
-      size: 10 + Math.random() * 20,
-      opacity: 0.3 + Math.random() * 0.7
-    }));
-    setSnowflakes(flakes);
-  }, []);
-
-  const questions = [
-    { type: "multiple", question: "What color is Rudolph's nose?", options: ["Blue", "Red", "Green", "Yellow"], correct: 1, difficulty: "kid", team: 1 },
-    { type: "multiple", question: "How many reindeer pull Santa's sleigh (including Rudolph)?", options: ["7", "8", "9", "10"], correct: 2, difficulty: "easy", team: 2 },
-    { type: "fill", question: "Complete: 'Jingle Bells, Jingle Bells, Jingle all the ____'", correctAnswer: "way", difficulty: "easy", team: 1 },
-    { type: "fill", question: "Frosty the Snowman had a nose made of a ____", correctAnswer: "button", difficulty: "kid", team: 2 },
-    { type: "multiple", question: "What do children leave for Santa on Christmas Eve?", options: ["Pizza", "Cookies and milk", "Cake", "Candy"], correct: 1, difficulty: "kid", team: 1 },
-    { type: "matching", question: "Match the reindeer:", pairs: [{ left: "Rudolph", right: "Red nose" }, { left: "Dasher", right: "Fastest" }, { left: "Cupid", right: "Valentine name" }], difficulty: "medium", team: 2 },
-    { type: "matching", question: "Match characters to homes:", pairs: [{ left: "Santa", right: "North Pole" }, { left: "Grinch", right: "Mount Crumpit" }, { left: "Buddy", right: "New York" }], difficulty: "medium", team: 1 },
-    { type: "fill", question: "'I'm dreaming of a ____ Christmas'", correctAnswer: "white", difficulty: "kid", team: 2 },
-    { type: "multiple", question: "In 'Home Alone', where does Kevin's family go?", options: ["London", "Paris", "Rome", "Tokyo"], correct: 1, difficulty: "medium", team: 1 },
-    { type: "fill", question: "In 'The Polar Express', what is the first gift of Christmas?", correctAnswer: "bell", difficulty: "medium", team: 2 },
-    { type: "matching", question: "Match Christmas colors:", pairs: [{ left: "Red", right: "Santa's suit" }, { left: "Green", right: "Christmas tree" }, { left: "White", right: "Snow" }], difficulty: "kid", team: 1 },
-    { type: "matching", question: "Match songs to lyrics:", pairs: [{ left: "Jingle Bells", right: "Dashing through snow" }, { left: "Silent Night", right: "All is calm" }, { left: "Rudolph", right: "Shiny nose" }], difficulty: "easy", team: 2 },
-    { type: "multiple", question: "In 'Elf', what is Buddy's favorite food?", options: ["Pizza", "Candy", "Spaghetti", "Cookies"], correct: 1, difficulty: "easy", team: 1 },
-    { type: "fill", question: "In 'A Christmas Carol', Scrooge's first name?", correctAnswer: "ebenezer", difficulty: "medium", team: 2 },
-    { type: "multiple", question: "What goes on top of a Christmas tree?", options: ["Star or angel", "Snowman", "Present", "Candy cane"], correct: 0, difficulty: "kid", team: 1 },
-    { type: "fill", question: "What does Santa say? 'Ho Ho ____!'", correctAnswer: "ho", difficulty: "kid", team: 2 },
-    { type: "matching", question: "Match Christmas foods:", pairs: [{ left: "Candy cane", right: "Red striped" }, { left: "Gingerbread", right: "Cookie house" }, { left: "Eggnog", right: "Creamy drink" }], difficulty: "easy", team: 1 },
-    { type: "matching", question: "Match movies to characters:", pairs: [{ left: "Home Alone", right: "Kevin" }, { left: "Elf", right: "Buddy" }, { left: "Grinch", right: "Cindy Lou" }], difficulty: "medium", team: 2 },
-    { type: "multiple", question: "What Christmas plant is parasitic?", options: ["Holly", "Mistletoe", "Ivy", "Poinsettia"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "fill", question: "What do naughty kids get?", correctAnswer: "coal", difficulty: "easy", team: 2 },
-    { type: "multiple", question: "Which country started Christmas trees?", options: ["England", "America", "Germany", "France"], correct: 2, difficulty: "hard", team: 1 },
-    { type: "fill", question: "Christmas songs are called ____", correctAnswer: "carols", difficulty: "easy", team: 2 },
-    { type: "matching", question: "Match Christmas plants:", pairs: [{ left: "Mistletoe", right: "Kiss under" }, { left: "Holly", right: "Red berries" }, { left: "Poinsettia", right: "Red leaves" }], difficulty: "medium", team: 1 },
-    { type: "matching", question: "Match Christmas symbols:", pairs: [{ left: "Star", right: "Tree top" }, { left: "Stocking", right: "Fireplace" }, { left: "Wreath", right: "Door" }], difficulty: "easy", team: 2 },
-    { type: "multiple", question: "Santa is based on someone from which country?", options: ["Finland", "Turkey", "Norway", "Iceland"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "fill", question: "Santa's sleigh is pulled by ____", correctAnswer: "reindeer", difficulty: "kid", team: 2 },
-    { type: "multiple", question: "What beverage is 'milk punch'?", options: ["Hot chocolate", "Eggnog", "Cider", "Wassail"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "fill", question: "Rudolph's elf friend's name?", correctAnswer: "hermey", difficulty: "medium", team: 2 },
-    { type: "matching", question: "Match movies to years:", pairs: [{ left: "Home Alone", right: "1990" }, { left: "Elf", right: "2003" }, { left: "Polar Express", right: "2004" }], difficulty: "hard", team: 1 },
-    { type: "matching", question: "Match countries to traditions:", pairs: [{ left: "Germany", right: "Markets" }, { left: "Japan", right: "KFC dinner" }, { left: "Mexico", right: "Piñatas" }], difficulty: "hard", team: 2 },
-    { type: "multiple", question: "Which reindeer shares Valentine's name?", options: ["Dasher", "Dancer", "Cupid", "Comet"], correct: 2, difficulty: "medium", team: 1 },
-    { type: "fill", question: "Which plant is native to Mexico?", correctAnswer: "poinsettia", difficulty: "hard", team: 2 },
-    { type: "multiple", question: "In 'Christmas Story', Ralphie wants?", options: ["Bicycle", "BB gun", "Train", "Puppy"], correct: 1, difficulty: "medium", team: 1 },
-    { type: "fill", question: "Hidden in Christmas pudding?", correctAnswer: "coin", difficulty: "hard", team: 2 },
-    { type: "matching", question: "Match reindeer meanings:", pairs: [{ left: "Dasher", right: "Fast" }, { left: "Dancer", right: "Graceful" }, { left: "Prancer", right: "Leaps" }], difficulty: "easy", team: 1 },
-    { type: "matching", question: "Match Santa helpers:", pairs: [{ left: "Elves", right: "Make toys" }, { left: "Reindeer", right: "Pull sleigh" }, { left: "Mrs. Claus", right: "Wife" }], difficulty: "kid", team: 2 },
-    { type: "multiple", question: "Charlie Brown Christmas aired?", options: ["1960", "1965", "1970", "1975"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "fill", question: "Store in 'Miracle on 34th Street'?", correctAnswer: "macy's", difficulty: "hard", team: 2 },
-    { type: "multiple", question: "Emperor who ordered census?", options: ["Nero", "Augustus", "Tiberius", "Caesar"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "matching", question: "Match carols to countries:", pairs: [{ left: "Silent Night", right: "Austria" }, { left: "O Come Faithful", right: "England" }, { left: "King Wenceslas", right: "Czech" }], difficulty: "hard", team: 2 },
-    { type: "fill", question: "Jack Skellington's dog?", correctAnswer: "zero", difficulty: "hard", team: 1 },
-    { type: "multiple", question: "Santa's suit color before Coke?", options: ["Blue", "Green", "Brown", "Various"], correct: 3, difficulty: "hard", team: 2 },
-    { type: "multiple", question: "NORAD started tracking Santa?", options: ["1940s", "1950s", "1960s", "1970s"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "matching", question: "Scandinavian traditions:", pairs: [{ left: "Yule Goat", right: "Sweden" }, { left: "Little Xmas Eve", right: "Norway" }, { left: "Rice pudding", right: "Denmark" }], difficulty: "hard", team: 2 },
-    { type: "fill", question: "Grinch's dog's name?", correctAnswer: "max", difficulty: "hard", team: 1 },
-    { type: "multiple", question: "Under mistletoe you ____?", options: ["Dance", "Kiss", "Sing", "Jump"], correct: 1, difficulty: "easy", team: 2 },
-    { type: "fill", question: "Complete: 'Deck the halls with ____'", correctAnswer: "holly", difficulty: "easy", team: 1 },
-    { type: "multiple", question: "Where does the Grinch live?", options: ["Cave", "Mount Crumpit", "Whoville", "Treehouse"], correct: 1, difficulty: "easy", team: 2 },
-    { type: "fill", question: "What pulls Santa's sleigh?", correctAnswer: "reindeer", difficulty: "kid", team: 1 },
-    { type: "multiple", question: "Christmas is celebrated on?", options: ["Dec 24", "Dec 25", "Dec 26", "Dec 31"], correct: 1, difficulty: "kid", team: 2 },
-    { type: "multiple", question: "What chemical compound gives snow its white color?", options: ["Hydrogen peroxide", "Light reflection from ice crystals", "Calcium carbonate", "Titanium dioxide"], correct: 1, difficulty: "hard", team: 1 },
-    { type: "fill", question: "What was the name of the ghost who visited Scrooge first in 'A Christmas Carol'?", correctAnswer: "jacob marley", difficulty: "hard", team: 2 },
-    { type: "multiple", question: "In what decade was electric Christmas tree lights first used?", options: ["1880s", "1900s", "1920s", "1940s"], correct: 0, difficulty: "hard", team: 1 },
-    { type: "matching", question: "Match the reindeer order in 'Twas the Night Before Christmas':", pairs: [{ left: "1st & 2nd", right: "Dasher & Dancer" }, { left: "3rd & 4th", right: "Prancer & Vixen" }, { left: "5th & 6th", right: "Comet & Cupid" }], difficulty: "hard", team: 2 },
-    { type: "fill", question: "What saint is Santa Claus derived from whose feast day is December 6th?", correctAnswer: "saint nicholas", difficulty: "hard", team: 1 },
-    { type: "multiple", question: "In what century did the tradition of Christmas trees begin in Germany?", options: ["14th century", "15th century", "16th century", "17th century"], correct: 2, difficulty: "hard", team: 2 },
-    { type: "fill", question: "What Norse god is associated with Yule and rides an eight-legged horse?", correctAnswer: "odin", difficulty: "hard", team: 1 },
-    { type: "multiple", question: "How many ghosts appear in 'A Christmas Carol' including Jacob Marley?", options: ["Three", "Four", "Five", "Six"], correct: 1, difficulty: "hard", team: 2 },
-    { type: "matching", question: "Match the Christmas carol to its original language:", pairs: [{ left: "Silent Night", right: "German" }, { left: "O Holy Night", right: "French" }, { left: "Angels We Have Heard", right: "Latin" }], difficulty: "hard", team: 1 },
-    { type: "fill", question: "What is the name of George Bailey's guardian angel in 'It's a Wonderful Life'?", correctAnswer: "clarence", difficulty: "hard", team: 2 }
-  ];
-
-  const handleMultipleChoice = (index) => {
-    setSelectedAnswer(index);
-    setShowAnswer(true);
-    const q = questions[currentQuestion];
-    if (index === q.correct) {
-      if (currentTeam === 1) {
-        setTeam1Score(team1Score + 1);
-      } else {
-        setTeam2Score(team2Score + 1);
-      }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: linear-gradient(135deg, #ff6b35, #f7931e, #ffc425);
+        background-attachment: fixed;
     }
-  };
 
-  const handleFillInBlank = () => {
-    setShowAnswer(true);
-    const q = questions[currentQuestion];
-    const userAnswer = fillInAnswer.toLowerCase().trim();
-    const correctAnswer = q.correctAnswer.toLowerCase().trim();
-    
-    if (userAnswer === correctAnswer) {
-      if (currentTeam === 1) {
-        setTeam1Score(team1Score + 1);
-      } else {
-        setTeam2Score(team2Score + 1);
-      }
-      setSelectedAnswer(true);
-    } else {
-      setSelectedAnswer(false);
+    /* Floating leaves animation */
+    .leaf {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: #ff6b35;
+        border-radius: 0 100% 0 100%;
+        animation: float 8s infinite linear;
+        opacity: 0.7;
+        z-index: -1;
     }
-  };
 
-  const handleMatching = () => {
-    setShowAnswer(true);
-    const q = questions[currentQuestion];
-    let correct = true;
-    
-    q.pairs.forEach((pair, idx) => {
-      if (matchingAnswers[idx] !== pair.right) {
-        correct = false;
-      }
-    });
+    .leaf:nth-child(2) { background: #d2691e; animation-delay: 2s; left: 20%; }
+    .leaf:nth-child(3) { background: #ff8c00; animation-delay: 4s; left: 40%; }
+    .leaf:nth-child(4) { background: #ffa500; animation-delay: 6s; left: 60%; }
+    .leaf:nth-child(5) { background: #ff4500; animation-delay: 8s; left: 80%; }
 
-    if (correct) {
-      if (currentTeam === 1) {
-        setTeam1Score(team1Score + 1);
-      } else {
-        setTeam2Score(team2Score + 1);
-      }
-      setSelectedAnswer(true);
-    } else {
-      setSelectedAnswer(false);
+    @keyframes float {
+        0% { transform: translateY(-100vh) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
     }
-  };
 
-  const nextQuestion = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setShowAnswer(false);
-      setSelectedAnswer(null);
-      setFillInAnswer('');
-      setMatchingAnswers({});
-      setCurrentTeam(currentTeam === 1 ? 2 : 1);
-    } else {
-      setGameOver(true);
+    /* Header */
+    header {
+        background: linear-gradient(45deg, #8b4513, #a0522d);
+        color: white;
+        text-align: center;
+        padding: 2rem 1rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
     }
-  };
 
-  const startGame = () => {
-    setGameStarted(true);
-  };
-
-  const restartGame = () => {
-    setCurrentQuestion(0);
-    setTeam1Score(0);
-    setTeam2Score(0);
-    setCurrentTeam(1);
-    setShowAnswer(false);
-    setSelectedAnswer(null);
-    setFillInAnswer('');
-    setMatchingAnswers({});
-    setGameOver(false);
-    setGameStarted(false);
-  };
-
-  const getDifficultyColor = (difficulty) => {
-    switch(difficulty) {
-      case 'kid': return 'bg-green-100 text-green-800';
-      case 'easy': return 'bg-blue-100 text-blue-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'hard': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+    header::before {
+        content: '🍂🎃🌾🍎🍂🎃🌾🍎🍂🎃🌾🍎🍂🎃🌾🍎';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5rem;
+        opacity: 0.6;
+        animation: scroll 20s linear infinite;
     }
-  };
 
-  const Snowfall = () => (
-    <>
-      {snowflakes.map(flake => (
-        <div
-          key={flake.id}
-          className="absolute text-white pointer-events-none"
-          style={{
-            left: `${flake.left}%`,
-            top: '-20px',
-            fontSize: `${flake.size}px`,
-            opacity: flake.opacity,
-            animation: `fall ${flake.animationDuration}s linear infinite`,
-            animationDelay: `${flake.animationDelay}s`
-          }}
-        >
-          ❄
-        </div>
-      ))}
-      <style>{`
-        @keyframes fall {
-          to {
-            transform: translateY(100vh) rotate(360deg);
-          }
+    @keyframes scroll {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(-150%); }
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        opacity: 0.95;
+    }
+
+    /* Navigation */
+    nav {
+        background: rgba(101, 67, 33, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 0.75rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    nav a:hover {
+        background: rgba(255, 107, 53, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        border-color: rgba(255, 107, 53, 0.5);
+    }
+
+    /* Main container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        margin-top: 2rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Sections */
+    section {
+        margin: 4rem 0;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 107, 53, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b35, #f7931e, #ffc425);
+        border-radius: 20px 20px 0 0;
+    }
+
+    h2 {
+        color: #2d1810;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        letter-spacing: -0.01em;
+    }
+
+    /* Event details grid */
+    .event-details {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+        justify-items: center;
+    }
+
+    .detail-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        border: 1px solid rgba(255, 107, 53, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .detail-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        border-color: rgba(255, 107, 53, 0.3);
+    }
+
+    .detail-card h3 {
+        color: #2d1810;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .emoji {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Activities grid */
+    .activities-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin: 2rem 0;
+        justify-items: center;
+    }
+
+    .activity-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        padding: 2rem 1.5rem;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border: 1px solid rgba(255, 107, 53, 0.15);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .activity-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        border-color: rgba(255, 107, 53, 0.3);
+    }
+
+    .activity-card h4 {
+        color: #2d1810;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    /* CTA Button */
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 1.25rem 2.5rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0.75rem;
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+        background: linear-gradient(135deg, #f7931e, #ff6b35);
+    }
+
+    /* Footer */
+    footer {
+        background: #654321;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .event-details, .activities-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
-      `}</style>
-    </>
-  );
-
-  const renderQuestion = (q) => {
-    if (q.type === "multiple") {
-      return (
-        <div className="space-y-3 mb-6">
-          {q.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => !showAnswer && handleMultipleChoice(index)}
-              disabled={showAnswer}
-              className={`w-full p-4 text-left rounded-xl border-4 transition transform hover:scale-102 font-semibold text-lg ${
-                showAnswer
-                  ? index === q.correct
-                    ? 'bg-green-200 border-green-600 text-green-900'
-                    : index === selectedAnswer
-                    ? 'bg-red-200 border-red-600 text-red-900'
-                    : 'bg-gray-100 border-gray-300 text-gray-600'
-                  : currentTeam === 1
-                  ? 'bg-white border-red-400 hover:border-red-600 hover:bg-red-50 text-gray-800'
-                  : 'bg-white border-green-400 hover:border-green-600 hover:bg-green-50 text-gray-800'
-              }`}
-            >
-              <span className="mr-3">{['🎁', '⛄', '🎅', '🔔'][index]}</span>
-              {option}
-            </button>
-          ))}
-        </div>
-      );
-    } else if (q.type === "fill") {
-      return (
-        <div className="mb-6">
-          <input
-            type="text"
-            value={fillInAnswer}
-            onChange={(e) => setFillInAnswer(e.target.value)}
-            disabled={showAnswer}
-            placeholder="Type your answer here..."
-            className={`w-full p-4 text-lg border-4 rounded-xl font-semibold ${
-              showAnswer
-                ? selectedAnswer
-                  ? 'bg-green-100 border-green-600'
-                  : 'bg-red-100 border-red-600'
-                : currentTeam === 1
-                ? 'border-red-400 focus:border-red-600'
-                : 'border-green-400 focus:border-green-600'
-            }`}
-          />
-          {!showAnswer && (
-            <button
-              onClick={handleFillInBlank}
-              className={`w-full mt-3 py-3 px-6 rounded-xl font-bold text-lg transition shadow-lg ${
-                currentTeam === 1
-                  ? 'bg-red-600 hover:bg-red-700 text-white'
-                  : 'bg-green-600 hover:bg-green-700 text-white'
-              }`}
-            >
-              Submit Answer
-            </button>
-          )}
-          {showAnswer && (
-            <div className="mt-3 p-3 bg-blue-100 border-2 border-blue-400 rounded-lg">
-              <p className="font-semibold">Correct: <span className="text-blue-700">{q.correctAnswer}</span></p>
-            </div>
-          )}
-        </div>
-      );
-    } else if (q.type === "matching") {
-      const rightOptions = q.pairs.map(p => p.right).sort(() => Math.random() - 0.5);
-      
-      return (
-        <div className="mb-6">
-          <div className="space-y-3">
-            {q.pairs.map((pair, idx) => (
-              <div key={idx} className="flex items-center gap-3">
-                <div className="flex-1 p-3 bg-blue-100 border-2 border-blue-400 rounded-lg font-semibold">
-                  {pair.left}
-                </div>
-                <span className="text-2xl">→</span>
-                <select
-                  value={matchingAnswers[idx] || ''}
-                  onChange={(e) => setMatchingAnswers({...matchingAnswers, [idx]: e.target.value})}
-                  disabled={showAnswer}
-                  className={`flex-1 p-3 border-4 rounded-lg font-semibold ${
-                    showAnswer
-                      ? matchingAnswers[idx] === pair.right
-                        ? 'bg-green-100 border-green-600'
-                        : 'bg-red-100 border-red-600'
-                      : currentTeam === 1
-                      ? 'border-red-400'
-                      : 'border-green-400'
-                  }`}
-                >
-                  <option value="">Select...</option>
-                  {rightOptions.map((opt, i) => (
-                    <option key={i} value={opt}>{opt}</option>
-                  ))}
-                </select>
-              </div>
-            ))}
-          </div>
-          {!showAnswer && (
-            <button
-              onClick={handleMatching}
-              className={`w-full mt-4 py-3 px-6 rounded-xl font-bold text-lg transition shadow-lg ${
-                currentTeam === 1
-                  ? 'bg-red-600 hover:bg-red-700 text-white'
-                  : 'bg-green-600 hover:bg-green-700 text-white'
-              }`}
-            >
-              Submit Matches
-            </button>
-          )}
-        </div>
-      );
     }
-  };
-
-  if (!gameStarted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-red-600 via-green-700 to-red-800 p-8 flex items-center justify-center relative overflow-hidden">
-        <Snowfall />
-        <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-8 text-center border-8 border-red-600 relative z-10">
-          <Snowflake className="w-24 h-24 mx-auto text-red-600 mb-4 animate-spin" style={{ animationDuration: '10s' }} />
-          <h1 className="text-5xl font-bold text-red-600 mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
-            🎄 Christmas Trivia 🎄
-          </h1>
-          <p className="text-xl text-gray-700 mb-4">Two teams compete!</p>
-          <p className="text-sm text-gray-600 mb-6">50 questions: multiple choice, fill in blank, and matching!</p>
-          
-          <div className="space-y-4 mb-8">
-            <div className="bg-red-50 p-4 rounded-xl border-4 border-red-400">
-              <label className="block text-red-700 font-bold mb-2 text-lg">🎅 Team 1 Name:</label>
-              <input
-                type="text"
-                value={team1Name}
-                onChange={(e) => setTeam1Name(e.target.value)}
-                className="w-full p-3 border-2 border-red-400 rounded-lg text-lg font-semibold"
-                placeholder="Enter Team 1 name"
-              />
-            </div>
-            
-            <div className="bg-green-50 p-4 rounded-xl border-4 border-green-400">
-              <label className="block text-green-700 font-bold mb-2 text-lg">🎄 Team 2 Name:</label>
-              <input
-                type="text"
-                value={team2Name}
-                onChange={(e) => setTeam2Name(e.target.value)}
-                className="w-full p-3 border-2 border-green-400 rounded-lg text-lg font-semibold"
-                placeholder="Enter Team 2 name"
-              />
-            </div>
-          </div>
-
-          <button
-            onClick={startGame}
-            className="bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white font-bold py-4 px-10 rounded-full text-xl transition shadow-lg transform hover:scale-105"
-          >
-            🎁 Start Game 🎁
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (gameOver) {
-    const winner = team1Score > team2Score ? team1Name : team2Score > team1Score ? team2Name : 'Tie';
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-red-600 via-green-700 to-red-800 p-8 flex items-center justify-center relative overflow-hidden">
-        <Snowfall />
-        <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-8 text-center border-8 border-red-600 relative z-10">
-          <Trophy className="w-24 h-24 mx-auto text-yellow-500 mb-4 mt-8" />
-          <h1 className="text-5xl font-bold text-red-600 mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
-            🎄 Game Over! 🎄
-          </h1>
-          
-          <div className="space-y-4 mb-8">
-            <div className={`p-6 rounded-xl border-4 ${team1Score > team2Score ? 'bg-yellow-100 border-yellow-500' : 'bg-red-50 border-red-400'}`}>
-              <h2 className="text-2xl font-bold text-red-700 mb-2">{team1Name}</h2>
-              <p className="text-4xl font-bold text-red-600">{team1Score} points</p>
-            </div>
-            
-            <div className={`p-6 rounded-xl border-4 ${team2Score > team1Score ? 'bg-yellow-100 border-yellow-500' : 'bg-green-50 border-green-400'}`}>
-              <h2 className="text-2xl font-bold text-green-700 mb-2">{team2Name}</h2>
-              <p className="text-4xl font-bold text-green-600">{team2Score} points</p>
-            </div>
-          </div>
-
-          <p className="text-3xl mb-8 font-bold text-gray-800">
-            {winner === 'Tie' ? "🎉 It's a Tie! 🎉" : `🏆 ${winner} Wins! 🏆`}
-          </p>
-          
-          <button
-            onClick={restartGame}
-            className="bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white font-bold py-4 px-10 rounded-full text-xl transition shadow-lg transform hover:scale-105"
-          >
-            🎅 Play Again 🎅
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const currentQ = questions[currentQuestion];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-red-600 via-green-700 to-red-800 p-8 relative overflow-hidden">
-      <Snowfall />
-      
-      <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-8">
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <Snowflake className="text-white w-12 h-12 animate-spin" style={{ animationDuration: '10s' }} />
-            <h1 className="text-5xl font-bold text-white" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.3)' }}>
-              🎄 Christmas Trivia 🎄
-            </h1>
-            <Snowflake className="text-white w-12 h-12 animate-spin" style={{ animationDuration: '10s' }} />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className={`p-4 rounded-xl border-4 transition ${currentTeam === 1 ? 'bg-red-200 border-red-600 shadow-2xl scale-105' : 'bg-red-50 border-red-400'}`}>
-            <h2 className="text-xl font-bold text-red-700 mb-2">{team1Name}</h2>
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Star className="text-yellow-500 w-6 h-6" fill="currentColor" />
-              <p className="text-3xl font-bold text-red-600">{team1Score}</p>
-            </div>
-            <div className="flex gap-2 justify-center">
-              <button
-                onClick={() => setTeam1Score(Math.max(0, team1Score - 1))}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-sm transition"
-              >
-                -1
-              </button>
-              <button
-                onClick={() => setTeam1Score(team1Score + 1)}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-lg text-sm transition"
-              >
-                +1
-              </button>
-            </div>
-            {currentTeam === 1 && <p className="text-red-700 font-bold mt-2">👉 Your Turn!</p>}
-          </div>
-          
-          <div className={`p-4 rounded-xl border-4 transition ${currentTeam === 2 ? 'bg-green-200 border-green-600 shadow-2xl scale-105' : 'bg-green-50 border-green-400'}`}>
-            <h2 className="text-xl font-bold text-green-700 mb-2">{team2Name}</h2>
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Star className="text-yellow-500 w-6 h-6" fill="currentColor" />
-              <p className="text-3xl font-bold text-green-600">{team2Score}</p>
-            </div>
-            <div className="flex gap-2 justify-center">
-              <button
-                onClick={() => setTeam2Score(Math.max(0, team2Score - 1))}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-sm transition"
-              >
-                -1
-              </button>
-              <button
-                onClick={() => setTeam2Score(team2Score + 1)}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-lg text-sm transition"
-              >
-                +1
-              </button>
-            </div>
-            {currentTeam === 2 && <p className="text-green-700 font-bold mt-2">👉 Your Turn!</p>}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-2xl p-8 border-8 border-red-600">
-          <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center gap-2 bg-gradient-to-r from-red-100 to-green-100 px-4 py-2 rounded-full border-2 border-red-400">
-              <Gift className="text-red-600 w-6 h-6" />
-              <span className="text-xl font-bold text-gray-800">Question {currentQuestion + 1}/{questions.length}</span>
-            </div>
-            <div className={`px-4 py-2 rounded-full text-sm font-bold ${getDifficultyColor(currentQ.difficulty)}`}>
-              {currentQ.difficulty.toUpperCase()}
-            </div>
-          </div>
-
-          <div className="mb-6 bg-gradient-to-r from-red-200 via-green-200 to-red-200 rounded-full h-4 overflow-hidden border-2 border-red-600">
-            <div
-              className="bg-gradient-to-r from-red-600 to-green-600 h-full transition-all duration-500 flex items-center justify-end pr-2"
-              style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-            >
-              <span className="text-white text-xs font-bold">🎅</span>
-            </div>
-          </div>
-
-          <div className={`p-6 rounded-2xl mb-6 border-4 ${currentTeam === 1 ? 'bg-gradient-to-r from-red-50 to-red-100 border-red-600' : 'bg-gradient-to-r from-green-50 to-green-100 border-green-600'}`}>
-            <div className="text-center mb-3">
-              <span className={`text-lg font-bold ${currentTeam === 1 ? 'text-red-700' : 'text-green-700'}`}>
-                {currentTeam === 1 ? `${team1Name}'s Question` : `${team2Name}'s Question`}
-              </span>
-              <div className="mt-2 text-sm font-semibold text-gray-600">
-                {currentQ.type === 'multiple' ? '📝 Multiple Choice' : 
-                 currentQ.type === 'fill' ? '✏️ Fill in the Blank' :
-                 '🔗 Matching'}
-              </div>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-800 text-center">
-              {currentQ.question}
-            </h2>
-          </div>
-
-          {renderQuestion(currentQ)}
-
-          {showAnswer && (
-            <div className="mb-6 text-center p-4 rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-200 border-4 border-yellow-400">
-              {selectedAnswer === true || (currentQ.type === 'multiple' && selectedAnswer === currentQ.correct) ? (
-                <p className="text-green-700 font-bold text-2xl">
-                  🎉 Correct! {currentTeam === 1 ? team1Name : team2Name} gets a point! 🎉
-                </p>
-              ) : (
-                <p className="text-red-700 font-bold text-2xl">
-                  ❌ Incorrect! No points this round! ❌
-                </p>
-              )}
-            </div>
-          )}
-
-          {showAnswer && (
-            <button
-              onClick={nextQuestion}
-              className="w-full bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white font-bold py-4 px-6 rounded-xl transition shadow-lg transform hover:scale-105 text-xl"
-            >
-              {currentQuestion < questions.length - 1 ? '🎄 Next Question 🎄' : '🎁 See Results 🎁'}
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default ChristmasTrivia;
+    
+    @media (max-width: 768px) {
+        h1 { font-size: 2rem; }
+        .subtitle { font-size: 1.2rem; }
+        nav a { margin: 0.5rem; }
+        .container { padding: 1rem; }
+        .event-details, .activities-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
