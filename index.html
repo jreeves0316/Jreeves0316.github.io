@@ -1,663 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TZNVYSL5DJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riverview Elementary Fall Festival — October 23, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dusk-deep:#241633;
+    --dusk-mid:#4a2545;
+    --dusk-low:#7a3a3f;
+    --ember:#e8792b;
+    --ember-dark:#b3560f;
+    --gold:#f0b429;
+    --leaf:#5c7a44;
+    --leaf-dark:#3f5c3b;
+    --cream:#fbf1e0;
+    --cream-2:#f4e5cc;
+    --ink:#2b1b12;
+    --ink-soft:#5a4636;
 
-  gtag('config', 'G-TZNVYSL5DJ');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riverview Elementary Fall Festival - October 10th Evening Fun!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background: linear-gradient(135deg, #ff6b35, #f7931e, #ffc425);
-            background-attachment: fixed;
-        }
+    --c-craft:#1f7a72;
+    --c-game:#c25a3c;
+    --c-treat:#c98a2e;
+    --c-fun:#6c4f9e;
+  }
 
-        /* Floating leaves animation */
-        .leaf {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: #ff6b35;
-            border-radius: 0 100% 0 100%;
-            animation: float 8s infinite linear;
-            opacity: 0.7;
-            z-index: -1;
-        }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0 0 .3em;color:var(--ink);}
+  p{margin:0 0 1em; max-width:62ch;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--ember);outline-offset:3px;}
 
-        .leaf:nth-child(2) { background: #d2691e; animation-delay: 2s; left: 20%; }
-        .leaf:nth-child(3) { background: #ff8c00; animation-delay: 4s; left: 40%; }
-        .leaf:nth-child(4) { background: #ffa500; animation-delay: 6s; left: 60%; }
-        .leaf:nth-child(5) { background: #ff4500; animation-delay: 8s; left: 80%; }
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(180deg,var(--dusk-deep) 0%,var(--dusk-mid) 45%,var(--dusk-low) 78%,var(--ember-dark) 100%);color:var(--cream);}
+  .stars{position:absolute;inset:0;}
+  .star{position:absolute;width:2px;height:2px;background:var(--cream);border-radius:50%;opacity:.7;}
+  .moon{position:absolute;top:8%;right:12%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #fff8e6, var(--gold) 70%);box-shadow:0 0 60px rgba(240,180,41,.45);}
+  .hill{position:absolute;left:0;right:0;bottom:0;height:130px;background:#1a0f22;}
+  .hill.h2{height:90px;background:#150c1c;opacity:.9;}
+  .pumpkin-row{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;align-items:flex-end;padding:0 4vw;pointer-events:none;}
+  .pumpkin{width:34px;height:26px;background:var(--ember);border-radius:50% 50% 45% 45%;position:relative;opacity:.85;}
+  .pumpkin::before{content:"";position:absolute;top:-8px;left:14px;width:6px;height:12px;background:var(--leaf-dark);border-radius:2px;}
+  .pumpkin:nth-child(3n){transform:scale(1.3);}
+  .pumpkin:nth-child(4n){transform:scale(.8);opacity:.6;}
+  .leaf{position:absolute;top:-40px;width:14px;height:14px;background:var(--ember);clip-path:polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);animation:fall linear infinite;opacity:.85;}
+  .leaf:nth-child(odd){background:var(--gold);}
+  .leaf:nth-child(3n){background:var(--leaf);}
+  @keyframes fall{0%{transform:translateY(-5vh) translateX(0) rotate(0deg);}100%{transform:translateY(105vh) translateX(40px) rotate(340deg);}}
+  @media (prefers-reduced-motion: reduce){.leaf{animation:none;display:none;}.wobble:hover{transform:none !important;}}
 
-        @keyframes float {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
+  .hero-content{position:relative;z-index:2;text-align:center;padding:120px 24px 190px;}
+  .eyebrow{font-size:15px;letter-spacing:.02em;color:var(--gold);margin-bottom:14px;font-weight:700;}
+  .hero h1{color:var(--cream);font-size:clamp(2.4rem,6vw,4.6rem);font-weight:700;line-height:1.05;max-width:900px;margin:0 auto .4em;}
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero .sub{font-size:19px;color:var(--cream-2);max-width:520px;margin:0 auto 40px;}
+  .countdown{display:inline-flex;gap:22px;background:rgba(0,0,0,.22);border:1px solid rgba(251,241,224,.25);padding:20px 28px;border-radius:16px;}
+  .countdown .unit{text-align:center;min-width:56px;}
+  .countdown .num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;}
+  .countdown .lbl{font-size:12px;color:var(--cream-2);margin-top:4px;}
+  .scroll-cue{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);color:var(--cream-2);font-size:13px;z-index:2;}
+  .wave-divider{display:block;position:relative;margin-top:-2px;z-index:3;}
 
-        /* Header */
-        header {
-            background: linear-gradient(45deg, #8b4513, #a0522d);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
+  section{padding:80px 0;position:relative;}
+  .section-head{max-width:640px;margin:0 auto 40px;text-align:center;}
+  .section-head .tag{color:var(--ember-dark);font-weight:800;font-size:14px;margin-bottom:8px;}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);}
+  .section-head p{margin-left:auto;margin-right:auto;}
 
-        header::before {
-            content: '🍂🎃🌾🍎🍂🎃🌾🍎🍂🎃🌾🍎🍂🎃🌾🍎';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.5rem;
-            opacity: 0.6;
-            animation: scroll 20s linear infinite;
-        }
+  /* ---------- TICKET DETAILS ---------- */
+  .ticket-strip{background:var(--dusk-deep);padding:60px 0 76px;}
+  .ticket-row{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;}
+  .ticket{background:var(--cream);border-radius:16px;padding:24px 28px;min-width:220px;text-align:center;position:relative;border:3px dashed var(--gold);}
+  .ticket:nth-child(1){transform:rotate(-3deg);}
+  .ticket:nth-child(2){transform:rotate(2deg);}
+  .ticket:nth-child(3){transform:rotate(-1.5deg);}
+  .ticket:nth-child(4){transform:rotate(2.5deg);}
+  .ticket .icon-chip{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;background:var(--ember);}
+  .ticket .k{font-size:13px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .ticket .v{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;margin-top:4px;}
+  .ticket .v small{display:block;font-family:'Karla',sans-serif;font-size:14px;font-weight:400;color:var(--ink-soft);margin-top:4px;}
 
-        @keyframes scroll {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(-150%); }
-        }
+  /* ---------- ACTIVITY CATEGORY NAV ---------- */
+  .cat-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:8px;}
+  .cat-pill{border:2px solid transparent;background:var(--cream-2);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:800;font-size:14px;display:flex;align-items:center;gap:8px;transition:transform .15s ease;}
+  .cat-pill:hover{transform:translateY(-2px);}
+  .cat-pill .dot{width:10px;height:10px;border-radius:50%;flex:none;}
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            letter-spacing: -0.02em;
-        }
+  /* ---------- ACTIVITY GROUPS ---------- */
+  .cat-group{margin-top:56px;}
+  .cat-group:first-of-type{margin-top:44px;}
+  .cat-title{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+  .cat-title .swatch{width:16px;height:16px;border-radius:50%;flex:none;}
+  .cat-title h3{font-size:1.5rem;margin:0;}
+  .cat-title .count{font-size:14px;color:var(--ink-soft);font-weight:700;}
 
-        .subtitle {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            opacity: 0.95;
-        }
+  .activity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+  .activity-card{
+    border-radius:18px;padding:22px 22px 20px;color:var(--cream);position:relative;
+    transition:transform .22s ease;
+  }
+  .activity-card.wobble:hover{transform:translateY(-6px) rotate(0deg) scale(1.02);}
+  .activity-card:nth-child(odd){transform:rotate(-1deg);}
+  .activity-card:nth-child(even){transform:rotate(1deg);}
+  .activity-card.highlight{box-shadow:0 0 0 4px var(--gold);}
+  .activity-card .emoji{font-size:28px;margin-bottom:10px;display:block;}
+  .activity-card h4{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin:0 0 6px;color:var(--cream);}
+  .activity-card p{font-size:14px;opacity:.92;margin:0;}
 
-        /* Navigation */
-        nav {
-            background: rgba(101, 67, 33, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+  .ac-craft{background:var(--c-craft);}
+  .ac-game{background:var(--c-game);}
+  .ac-treat{background:var(--c-treat);}
+  .ac-fun{background:var(--c-fun);}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0.5rem 0.375rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: inline-block;
-        }
+  /* ---------- TIMELINE TRAIL ---------- */
+  .trail{position:relative;max-width:640px;margin:0 auto;padding-left:8px;}
+  .trail::before{content:"";position:absolute;left:26px;top:10px;bottom:10px;width:4px;background:repeating-linear-gradient(180deg,var(--ember) 0 10px, transparent 10px 20px);border-radius:4px;}
+  .trail-item{position:relative;padding:0 0 40px 66px;}
+  .trail-item:last-child{padding-bottom:0;}
+  .trail-marker{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:50%;background:var(--ember);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:13px;text-align:center;border:4px solid var(--cream);box-shadow:0 0 0 2px var(--ember);}
+  .trail-item:nth-child(2n) .trail-marker{background:var(--leaf);box-shadow:0 0 0 2px var(--leaf);}
+  .trail-item:nth-child(3n) .trail-marker{background:var(--c-fun);box-shadow:0 0 0 2px var(--c-fun);}
+  .trail-card{background:var(--cream-2);border-radius:14px;padding:16px 20px;}
+  .trail-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;margin-bottom:2px;}
+  .trail-card p{margin:0;font-size:14.5px;color:var(--ink-soft);}
 
-        nav a:hover {
-            background: rgba(255, 107, 53, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
-            border-color: rgba(255, 107, 53, 0.5);
-        }
+  /* ---------- COSTUME + TRIVIA ---------- */
+  .two-up{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  @media (max-width:760px){.two-up{grid-template-columns:1fr;}}
+  .panel{border-radius:22px;padding:34px;position:relative;}
+  .panel.warm{background:var(--ember);color:var(--ink);}
+  .panel.cool{background:var(--dusk-deep);color:var(--cream);}
+  .panel.cool h3, .panel.cool p{color:var(--cream);}
+  .panel.warm h3{color:var(--ink);}
+  .panel h3{font-size:1.5rem;}
+  .panel .sticker{position:absolute;top:-16px;left:24px;background:var(--gold);color:var(--ink);font-weight:800;font-size:12.5px;padding:6px 14px;border-radius:999px;transform:rotate(-4deg);border:2px solid var(--cream);}
+  .wheel-widget{display:flex;align-items:center;gap:22px;margin-top:18px;flex-wrap:wrap;}
+  .wheel{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--gold) 0 25%, var(--cream) 0 50%, var(--leaf-dark) 0 75%, var(--dusk-mid) 0 100%);position:relative;transition:transform 2.2s cubic-bezier(.17,.89,.32,1.28);flex:none;border:4px solid var(--cream);}
+  .wheel::after{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);border-left:8px solid transparent;border-right:8px solid transparent;border-top:14px solid var(--cream);}
+  .spin-btn{background:var(--gold);color:var(--ink);border:none;padding:13px 24px;border-radius:999px;font-weight:800;cursor:pointer;font-size:15px;}
+  .spin-btn:hover{transform:scale(1.05);}
+  #wheel-result{margin-top:12px;font-size:15px;min-height:1.6em;color:var(--cream);font-weight:700;}
 
-        /* Main container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            margin-top: 2rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+  /* ---------- BRING LIST ---------- */
+  .bring-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;}
+  .bring-item{border-radius:16px;padding:20px 20px 18px;background:var(--cream-2);display:flex;gap:14px;align-items:flex-start;}
+  .bring-item .ico{width:38px;height:38px;border-radius:50%;background:var(--ember);flex:none;display:flex;align-items:center;justify-content:center;color:var(--cream);font-weight:800;font-size:17px;}
+  .bring-item .n{font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;margin-bottom:2px;}
+  .bring-item .d{font-size:13.5px;color:var(--ink-soft);}
 
-        /* Sections */
-        section {
-            margin: 4rem 0;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
+  /* ---------- CTA ---------- */
+  .cta{background:var(--leaf-dark);color:var(--cream);text-align:center;padding:80px 24px;overflow:hidden;position:relative;}
+  .cta h2{color:var(--cream);}
+  .cta p{color:var(--cream-2);margin:0 auto 28px;}
+  .btn-primary{display:inline-block;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:800;padding:15px 32px;border-radius:999px;transition:transform .15s ease;}
+  .btn-primary:hover{transform:scale(1.06) rotate(-1deg);}
 
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b35, #f7931e, #ffc425);
-            border-radius: 20px 20px 0 0;
-        }
+  /* ---------- VOLUNTEER TICKET ---------- */
+  .ticket.vol{background:var(--gold);border-color:var(--ink);}
+  .ticket.vol .icon-chip{background:var(--ink);}
+  .ticket.vol .k{color:var(--ink);}
+  .ticket.vol .v small a{color:var(--ink);font-weight:700;text-decoration:underline;}
 
-        h2 {
-            color: #2d1810;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            letter-spacing: -0.01em;
-        }
-
-        /* Event details grid */
-        .event-details {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-            justify-items: center;
-        }
-
-        .detail-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255, 107, 53, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 180px;
-            width: 100%;
-            max-width: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .detail-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .detail-card h3 {
-            color: #2d1810;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .emoji {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Activities grid */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-            justify-items: center;
-        }
-
-        .activity-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 2rem 1.5rem;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255, 107, 53, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .activity-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .activity-card h4 {
-            color: #2d1810;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
-            color: white;
-            padding: 1.25rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0.75rem;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
-            background: linear-gradient(135deg, #f7931e, #ff6b35);
-        }
-
-        /* Footer */
-        footer {
-            background: #654321;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .event-details, .activities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1.2rem; }
-            nav { 
-                padding: 0.75rem 0.5rem; 
-            }
-            nav a { 
-                margin: 0.25rem 0.2rem;
-                padding: 0.5rem 0.75rem;
-                font-size: 0.8rem;
-            }
-            .container { padding: 1rem; }
-            .event-details, .activities-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.5rem;
-            }
-            nav a {
-                margin: 0.2rem 0.1rem;
-                padding: 0.4rem 0.6rem;
-                font-size: 0.75rem;
-                border-radius: 25px;
-            }
-        }
-    </style>
+  footer{padding:40px 24px;text-align:center;color:var(--ink-soft);font-size:14px;}
+</style>
 </head>
 <body>
-    <!-- Floating leaves -->
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
 
-    <header>
-        <h1>🎃 Riverview Elementary Fall Festival 🍂</h1>
-        <p class="subtitle">An Evening of Fall Fun & Family Entertainment!</p>
-        <p>Join us for a magical evening of autumn adventures and a special movie screening!</p>
-    </header>
 
-            <nav>
-        <a href="#details">Event Details</a>
-        <a href="#costume">Costume Contest</a>
-        <a href="#activities">Activities</a>
-        <a href="#food">Food & Treats</a>
-        <a href="#register">Register</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
-    <div class="container">
-        <section id="details">
-            <h2>🗓️ Event Details</h2>
-            <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    🏆 <strong>Important Note: All kids at the fall festival must be accompanied by an adult</strong></p>
-            <div class="event-details">
-                <div class="detail-card">
-                    <div class="emoji">📅</div>
-                    <h3>Date</h3>
-                    <p><strong>Friday, October 10th, 2025</strong><br>Rain or shine!</p>
-                </div>
-                <div class="detail-card">
-                    <div class="emoji">⏰</div>
-                    <h3>Time</h3>
-                    <p><strong>5:30 PM - 8:45 PM</strong><br>Food, games & activities: 5:30-7 PM</p>
-                </div>
-                <div class="detail-card">
-                    <div class="emoji">📍</div>
-                    <h3>Location</h3>
-                    <p><strong>Playground Area</strong><br>Behind Riverview Elementary School</p>
-                </div>
-                <div class="detail-card">
-                    <div class="emoji">🎬</div>
-                    <h3>Movie Night</h3>
-                    <p><strong>7:00 PM - 8:45 PM</strong><br>Disney-Pixar's "Coco"<br>on the playground!</p>
-                </div>
-            </div>
-                  <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    <strong>Volunteers Needed!</strong> We can use your help to make this event magical for your kids. We have created short volunteer sessions, so you can help and still enjoy the night with your kids. Sign up <a href="https://www.signupgenius.com/go/4090C4DABAC2AAB9-58135803-2025">here</a>, if interested!</p>
-            </div>
-        </section>
+<header class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="moon"></div>
+  <div id="leaves"></div>
+  <div class="hero-content">
+    <div class="eyebrow">RIVERVIEW ELEMENTARY PTA PRESENTS</div>
+    <h1>An evening of <em>fall</em>, food & family fun</h1>
+    <p class="sub">Dinner from food trucks, a full lineup of games and crafts, and a movie under the stars.</p>
+    <div class="countdown" id="countdown" aria-live="polite">
+      <div class="unit"><div class="num" id="cd-days">–</div><div class="lbl">days</div></div>
+      <div class="unit"><div class="num" id="cd-hours">–</div><div class="lbl">hours</div></div>
+      <div class="unit"><div class="num" id="cd-mins">–</div><div class="lbl">mins</div></div>
+      <div class="unit"><div class="num" id="cd-secs">–</div><div class="lbl">secs</div></div>
+    </div>
+  </div>
+  <div class="hill h2"></div>
+  <div class="hill"></div>
+  <div class="pumpkin-row">
+    <div class="pumpkin"></div><div class="pumpkin"></div><div class="pumpkin"></div>
+    <div class="pumpkin"></div><div class="pumpkin"></div><div class="pumpkin"></div>
+    <div class="pumpkin"></div><div class="pumpkin"></div>
+  </div>
+  <div class="scroll-cue">↓ scroll for the full lineup</div>
+  <svg class="wave-divider" viewBox="0 0 1200 60" preserveAspectRatio="none" style="width:100%;height:60px;">
+    <path d="M0,20 Q150,60 300,20 T600,20 T900,20 T1200,20 L1200,60 L0,60 Z" fill="#fbf1e0"></path>
+  </svg>
+</header>
 
-        <section id="costume">
-            <h2>🎭 Costume Competition</h2>
-            
-            <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    🏆 <strong>Winner will be drawn at random before the movie starts.</strong></p>
-            </div>
+<section class="ticket-strip">
+  <div class="wrap">
+    <div class="ticket-row">
+      <div class="ticket">
+        <div class="icon-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <div class="k">Date</div>
+        <div class="v">Fri, Oct 23<small>2026</small></div>
+      </div>
+      <div class="ticket">
+        <div class="icon-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="k">Time</div>
+        <div class="v">5:30–8:45pm<small>Activities 5:30–7, movie 7–8:45</small></div>
+      </div>
+      <div class="ticket">
+        <div class="icon-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <div class="k">Where</div>
+        <div class="v">Riverview Elementary<small>Right outside, rain or shine</small></div>
+      </div>
+      <div class="ticket vol">
+        <div class="icon-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+        <div class="k">We need help</div>
+        <div class="v">Volunteers<small><a href="#volunteer">See how to pitch in →</a></small></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="activities-grid">
-                <div class="activity-card">
-                    <div class="emoji">👶</div>
-                    <h4>Kids Only</h4>
-                    <p>This fun costume competition is exclusively for children 12 and under but all ages of "kids" are welcome to wear a fun fall costume!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎃</div>
-                    <h4>Fall Themes</h4>
-                    <p>Pumpkins, scarecrows, autumn leaves, animals, superheroes - any appropriate costume is welcome!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎟️</div>
-                    <h4>Easy Entry</h4>
-                    <p>Just show up in costume! Visit our registration table to enter your child into the drawing.</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🏆</div>
-                    <h4>Prize Drawing</h4>
-                    <p>Winner will be randomly selected and announced at 6:55 PM just before the movie begins!</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">🎪 Contest Details</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left;">
-                    <div>
-                        <p><strong>📝 How to Enter:</strong><br>
-                        • Kids wear costume to the festival<br>
-                        • Visit our registration table<br>
-                        • Receive your entry ticket</p>
-                    </div>
-                    <div>
-                        <p><strong>⏰ Important Times:</strong><br>
-                        • Entry: 5:30 PM - 6:45 PM<br>
-                        • Winner announcement: 6:55 PM<br>
-                        • Must be present to win!</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 107, 53, 0.1); border-radius: 8px;">
-                    <p style="font-weight: 600; color: #2d1810; margin: 0;">
-                        🌟 <strong>Costume Guidelines:</strong> Please ensure costumes are appropriate for a family event - no gore, violence, weapons, masks, or scary elements. Keep it comfortable for outdoor activities and fun!
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="activities">
-            <h2>🎯 Fall Activities & Games</h2>
-            <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.1rem; color: #2d1810; font-weight: 600;">
-                     🎪 <strong>13 Amazing Activities Await!</strong><br>
-                    From creative crafts to active games, there's something fun for everyone during our activity time from 5:30-7:00 PM!
-                </p>
-            </div>
-            <div class="activities-grid">
-                <div class="activity-card">
-                    <div class="emoji">📸</div>
-                    <h4>Photo Booth</h4>
-                    <p>Capture memories with fun fall props and backdrops - perfect for family photos!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎵</div>
-                    <h4>Fall Music & Dancing</h4>
-                    <p>Dance to autumn tunes and enjoy live musical entertainment throughout the evening!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎃</div>
-                    <h4>Guess the Weight of the Pumpkin</h4>
-                    <p>Make your best guess and win a prize if you're closest to the actual weight!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🎨</div>
-                    <h4>Mini Pumpkin Decorating</h4>
-                    <p>Create your own masterpiece with small pumpkins, paint, and decorations!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🍂</div>
-                    <h4>Fall-Themed Temporary Tattoos</h4>
-                    <p>Choose from fun fall designs like pumpkins, leaves, and autumn animals for temporary tattoos!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🍂</div>
-                    <h4>Leaf Prints</h4>
-                    <p>Create beautiful leaf art using real leaves and colorful paints!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">📿</div>
-                    <h4>Fall Bracelet Making</h4>
-                    <p>Design and create autumn-themed bracelets with seasonal beads and colors!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🏃</div>
-                    <h4>Sack Races</h4>
-                    <p>Hop to victory in exciting sack races for kids of all ages!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">🍎</div>
-                    <h4>Apple Toss</h4>
-                    <p>Toss apples into baskets and win prizes - a classic autumn game!</p>
-                </div>
-                <div class="activity-card">
-                    <div class="emoji">⭕</div>
-                    <h4>Mini Pumpkin Tic-Tac-Toe</h4>
-                    <p>Play tic-tac-toe using mini pumpkins and gourds - a fun fall twist on the classic game!</p>
-                </div>
-            </div>
-        </section>
-
-         <section id="food">
-            <h2>🍎 Food & Treats</h2>
-            
-            <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-radius: 12px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <p style="font-size: 1.2rem; color: #2d1810; font-weight: 600;">
-                    🚚 <strong>Food Trucks on Site!</strong> Plus free treats for everyone to enjoy!
-                </p>
-            </div>
-
-            <div style="margin-bottom: 3rem;">
-                <h3 style="text-align: center; color: #2d1810; font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">🚚 Food Trucks</h3>
-                <div class="activities-grid">
-                    <div class="activity-card">
-                        <div class="emoji">🧇</div>
-                        <h4>The Funnel Cake Truck KC</h4>
-                        <p>Fresh, hot funnel cakes with powdered sugar, strawberries, chocolate, and more delicious toppings!</p>
-                    </div>
-                    <div class="activity-card">
-                        <div class="emoji">🍕</div>
-                        <h4>Minsky's Pizza Food Truck</h4>
-                        <p>Authentic Kansas City style pizza fresh from the truck - perfect for dinner before the movie!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="text-align: center; color: #2d1810; font-size: 1.8rem; margin-bottom: 2rem; font-weight: 600;">🆓 Complimentary Treats</h3>
-                <div class="activities-grid">
-                    <div class="activity-card">
-                        <div class="emoji">🍎</div>
-                        <h4>Caramel Apples</h4>
-                        <p>Sweet, crisp apples covered in rich caramel - a classic fall treat that's always a crowd favorite!</p>
-                    </div>
-                    <div class="activity-card">
-                        <div class="emoji">☕</div>
-                        <h4>Fresh Apple Cider</h4>
-                        <p>Warm, spiced apple cider to keep you cozy during the evening festivities - perfect for October weather!</p>
-                    </div>
-                    <div class="activity-card">
-                        <div class="emoji">🔥</div>
-                        <h4>S'mores Station</h4>
-                        <p>Make your own s'mores with marshmallows, chocolate, and graham crackers around our safe fire station!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-              <div style="text-align: center; padding: 2rem;">
-            <div style="margin: 2rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">🎬 Featured Movie: Disney-Pixar's "Coco"</h3>
-                <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px; max-width: 250px;">
-                        <img src="https://lumiere-a.akamaihd.net/v1/images/p_coco_19736_fd5fa537.jpeg" 
-                             alt="Disney-Pixar's Coco Movie Poster" 
-                             style="width: 100%; max-width: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);"/>
-                    </div>
-                    </div>
-                    <div style="flex: 2; min-width: 250px; text-align: left;">
-                        <p style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.6;">Join Miguel on his magical journey to the Land of the Dead in this heartwarming tale about family, dreams, and the power of music.</p>
-                        <p style="color: #666; font-style: italic;">🏆 Academy Award Winner for Best Animated Feature</p>
-                        <p style="margin-top: 1rem;"><strong>Perfect for:</strong> All ages • Family-friendly • 105 minutes</p>
-                        <p style="margin-top: 0.5rem;"><strong>Themes:</strong> Family bonds, following your dreams, celebrating heritage</p>
-                    </div>
-                </div>
-            </div>
-
-       
-
-        <section id="register">
-            <h2>📝 Registration</h2>
-            <div style="text-align: center; padding: 2rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                    <strong>No pre-registration required - just come and enjoy!</strong><br>
-                    Perfect timing for dinner and a movie with the family.
-                </p>
-                
-                <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 1px solid rgba(255, 107, 53, 0.2);">
-                    <h3 style="color: #2d1810; margin-bottom: 1rem; font-weight: 600;">What to Bring:</h3>
-                    <p>✅ Blankets or low chairs for movie viewing<br>
-                    ✅ Comfortable clothes for outdoor activities<br>
-                    ✅ Light jacket (October evenings can be cool!)<br>
-                    ✅ Camera for memories<br>
-                    ✅ Appetite for fall fun and dinner!<br>
-                    ✅ Optional: Fall costume for extra fun</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>📞 Contact Information</h2>
-            <div style="text-align: center; padding: 1rem;">
-                <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 107, 53, 0.2);">
-                    <p><strong>📧 Email:</strong> refalconspta@gmail.com</p>
-                    <p><strong>🌐 Website:</strong> www.riverviewelementary.edu</p>
-                    <p><strong>📍 Address:</strong> 21550 W 47th St, Shawnee, KS 66226</p>
-                    <br>
-                    <p><strong>Event Coordinator:</strong> Jason Reeves</p>
-                </div>
-            </div>
-        </section>
-            <p style="font-size: 1.5rem; color: #2d1810; font-weight: bold;">
-                🍂 Can't wait to see you there! Let's make this fall unforgettable! 🎃
-            </p>
-        </div>
+<section id="lineup">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">THE LINEUP</div>
+      <h2>14 activities, no lines, no tickets</h2>
+      <p>Wander at your own pace and try everything that catches your eye.</p>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Riverview Elementary Fall Festival. All rights reserved.</p>
-        <p>🍂 Creating magical autumn memories together! 🍂</p>
-    </footer>
+    <div class="cat-nav">
+      <button class="cat-pill" data-jump="craft" style="color:var(--c-craft)"><span class="dot" style="background:var(--c-craft)"></span>Crafts</button>
+      <button class="cat-pill" data-jump="game" style="color:var(--c-game)"><span class="dot" style="background:var(--c-game)"></span>Games</button>
+      <button class="cat-pill" data-jump="treat" style="color:var(--c-treat)"><span class="dot" style="background:var(--c-treat)"></span>Food & treats</button>
+      <button class="cat-pill" data-jump="fun" style="color:var(--c-fun)"><span class="dot" style="background:var(--c-fun)"></span>Entertainment</button>
+    </div>
 
-    <script>
-        // Add some interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for navigation links
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
+    <div class="cat-group" id="cat-craft">
+      <div class="cat-title"><span class="swatch" style="background:var(--c-craft)"></span><h3>Crafts</h3><span class="count">4 make-and-take stations</span></div>
+      <div class="activity-grid">
+        <div class="activity-card wobble ac-craft"><span class="emoji">🍂</span><h4>Fall temporary tattoos</h4><p>Pick a design, pumpkins to leaves, and wear it for the night.</p></div>
+        <div class="activity-card wobble ac-craft"><span class="emoji">📿</span><h4>Fall bracelet making</h4><p>String your own with autumn-colored beads.</p></div>
+        <div class="activity-card wobble ac-craft"><span class="emoji">🧑‍🌾</span><h4>Make-your-own scarecrow</h4><p>A paper plate craft — decorate your own mini scarecrow face.</p></div>
+        <div class="activity-card wobble ac-craft"><span class="emoji">🎃</span><h4>Color-your-own jack-o-lantern</h4><p>Grab markers and design your perfect pumpkin face.</p></div>
+      </div>
+    </div>
 
-            // Add click animation to activity cards
-            const cards = document.querySelectorAll('.activity-card, .detail-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-                });
-            });
+    <div class="cat-group" id="cat-game">
+      <div class="cat-title"><span class="swatch" style="background:var(--c-game)"></span><h3>Games</h3><span class="count">5 to play</span></div>
+      <div class="activity-grid">
+        <div class="activity-card wobble ac-game"><span class="emoji">🎡</span><h4>Fall trivia wheel</h4><p>Spin the wheel, answer a fall trivia question, win a prize.</p></div>
+        <div class="activity-card wobble ac-game"><span class="emoji">⚖️</span><h4>Guess the weight of the pumpkin</h4><p>Closest guess to the real weight takes the prize.</p></div>
+        <div class="activity-card wobble ac-game"><span class="emoji">🏃</span><h4>Sack races</h4><p>Hop your way to the finish line, heats run all evening.</p></div>
+        <div class="activity-card wobble ac-game"><span class="emoji">🍎</span><h4>Apple toss</h4><p>Toss apples into the baskets for a prize.</p></div>
+        <div class="activity-card wobble ac-game"><span class="emoji">🎃</span><h4>Pumpkin relay race</h4><p>Team up and race mini pumpkins down the lawn.</p></div>
+      </div>
+    </div>
 
-            // Fun emoji rain on page load
-            setTimeout(() => {
-                createEmojiRain();
-            }, 1000);
-        });
+    <div class="cat-group" id="cat-treat">
+      <div class="cat-title"><span class="swatch" style="background:var(--c-treat)"></span><h3>Food & treats</h3><span class="count">3 to enjoy</span></div>
+      <div class="activity-grid">
+        <div class="activity-card wobble ac-treat"><span class="emoji">🚚</span><h4>Dinner food trucks</h4><p>Two trucks on site — grab dinner any time during the evening.</p></div>
+        <div class="activity-card wobble ac-treat"><span class="emoji">🍏</span><h4>Caramel apples</h4><p>Free while they last, a classic fall treat.</p></div>
+        <div class="activity-card wobble ac-treat"><span class="emoji">🔥</span><h4>S'mores station</h4><p>Marshmallows, chocolate, graham crackers, all free.</p></div>
+      </div>
+    </div>
 
-        function createEmojiRain() {
-            const emojis = ['🍂', '🎃', '🌾', '🍎', '🦃', '🌽', '🥧'];
-            for (let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    emoji.style.position = 'fixed';
-                    emoji.style.top = '-50px';
-                    emoji.style.left = Math.random() * window.innerWidth + 'px';
-                    emoji.style.fontSize = '2rem';
-                    emoji.style.zIndex = '9999';
-                    emoji.style.pointerEvents = 'none';
-                    document.body.appendChild(emoji);
-                    
-                    let pos = -50;
-                    const fall = setInterval(() => {
-                        pos += 3;
-                        emoji.style.top = pos + 'px';
-                        if (pos > window.innerHeight) {
-                            clearInterval(fall);
-                            document.body.removeChild(emoji);
-                        }
-                    }, 20);
-                }, i * 200);
-            }
-        }
-    </script>
+    <div class="cat-group" id="cat-fun">
+      <div class="cat-title"><span class="swatch" style="background:var(--c-fun)"></span><h3>Entertainment</h3><span class="count">3 to catch</span></div>
+      <div class="activity-grid">
+        <div class="activity-card wobble ac-fun"><span class="emoji">📸</span><h4>Photo booth</h4><p>Fun fall props and backdrops — great for family photos.</p></div>
+        <div class="activity-card wobble ac-fun"><span class="emoji">🎵</span><h4>Fall music & dancing</h4><p>Autumn tunes playing all evening — dance whenever you like.</p></div>
+        <div class="activity-card wobble ac-fun"><span class="emoji">👑</span><h4>Costume contest</h4><p>Show up in costume, get entered, winner drawn at random.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">HOW THE EVENING GOES</div>
+      <h2>Dinner, games, then a movie under the stars</h2>
+    </div>
+    <div class="trail">
+      <div class="trail-item">
+        <div class="trail-marker">5:30<br>PM</div>
+        <div class="trail-card"><div class="trail-title">Gates open</div><p>Dinner and every activity go live. No pre-registration — just show up.</p></div>
+      </div>
+      <div class="trail-item">
+        <div class="trail-marker">6:45<br>PM</div>
+        <div class="trail-card"><div class="trail-title">Costume entries close</div><p>Enter any time before this at the registration table.</p></div>
+      </div>
+      <div class="trail-item">
+        <div class="trail-marker">6:55<br>PM</div>
+        <div class="trail-card"><div class="trail-title">Costume winner drawn</div><p>Random drawing — must be present to win.</p></div>
+      </div>
+      <div class="trail-item">
+        <div class="trail-marker">7:00<br>PM</div>
+        <div class="trail-card"><div class="trail-title">Movie starts</div><p>This year's title is still being finalized — check back soon.</p></div>
+      </div>
+      <div class="trail-item">
+        <div class="trail-marker">8:45<br>PM</div>
+        <div class="trail-card"><div class="trail-title">Movie ends</div><p>See you next year!</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two-up">
+    <div class="panel warm">
+      <div class="sticker">Kids 12 & under</div>
+      <h3>Costume contest</h3>
+      <p>Any appropriate fall costume — pumpkins, scarecrows, animals, superheroes, all welcome. Winner is drawn at random, so everyone in costume has an equal shot.</p>
+      <p>No gore, weapons, or full-face masks please — comfort matters too, you'll be outside all evening.</p>
+    </div>
+    <div class="panel cool">
+      <div class="sticker">Try it early</div>
+      <h3>Spin the trivia wheel</h3>
+      <p>A preview of the actual game — spin for a sample question before you get there.</p>
+      <div class="wheel-widget">
+        <div class="wheel" id="triviaWheel"></div>
+        <div>
+          <button class="spin-btn" id="spinBtn">Spin the wheel</button>
+          <div id="wheel-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">WHAT TO BRING</div>
+      <h2>Come as you are, dress for the evening</h2>
+    </div>
+    <div class="bring-grid">
+      <div class="bring-item"><div class="ico">🧣</div><div><div class="n">A light jacket</div><div class="d">October evenings cool off fast</div></div></div>
+      <div class="bring-item"><div class="ico">🪑</div><div><div class="n">Blanket or low chairs</div><div class="d">For the movie on the lawn</div></div></div>
+      <div class="bring-item"><div class="ico">👟</div><div><div class="n">Comfortable shoes</div><div class="d">You'll be walking around all evening</div></div></div>
+      <div class="bring-item"><div class="ico">💳</div><div><div class="n">Cash or card</div><div class="d">For food trucks, just in case</div></div></div>
+      <div class="bring-item"><div class="ico">👜</div><div><div class="n">A bag for crafts</div><div class="d">Four stations' worth adds up</div></div></div>
+      <div class="bring-item"><div class="ico">🎃</div><div><div class="n">Your costume</div><div class="d">Optional, but gets you into the drawing</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="volunteer">
+  <div class="wrap">
+    <h2>We can't run this without you</h2>
+    <p>Volunteer shifts are short and scheduled so you can still enjoy the night with your own kids.</p>
+    <a class="btn-primary" href="#" onclick="alert('Volunteer sign-up link coming soon — check back before the event.'); return false;">Sign up to volunteer</a>
+  </div>
+</section>
+
+<footer>
+  Riverview Elementary Fall Festival · October 23, 2026 · Questions? refalconspta@gmail.com
+</footer>
+
+<script>
+  var target = new Date("2026-10-23T17:30:00-05:00").getTime();
+  function updateCountdown(){
+    var now = new Date().getTime();
+    var diff = target - now;
+    if(diff < 0){ diff = 0; }
+    var d = Math.floor(diff/(1000*60*60*24));
+    var h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    var m = Math.floor((diff%(1000*60*60))/(1000*60));
+    var s = Math.floor((diff%(1000*60))/1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = h;
+    document.getElementById('cd-mins').textContent = m;
+    document.getElementById('cd-secs').textContent = s;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  var starsEl = document.getElementById('stars');
+  for(var i=0;i<60;i++){
+    var s = document.createElement('div');
+    s.className='star';
+    s.style.left = Math.random()*100+'%';
+    s.style.top = Math.random()*55+'%';
+    s.style.opacity = (0.3+Math.random()*0.7).toFixed(2);
+    starsEl.appendChild(s);
+  }
+
+  var leavesEl = document.getElementById('leaves');
+  var leafCount = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 16;
+  for(var j=0;j<leafCount;j++){
+    var l = document.createElement('div');
+    l.className='leaf';
+    l.style.left = Math.random()*100+'%';
+    l.style.animationDuration = (7+Math.random()*8)+'s';
+    l.style.animationDelay = (Math.random()*10)+'s';
+    leavesEl.appendChild(l);
+  }
+
+  var pills = document.querySelectorAll('.cat-pill');
+  pills.forEach(function(pill){
+    pill.addEventListener('click', function(){
+      var id = 'cat-' + this.getAttribute('data-jump');
+      var group = document.getElementById(id);
+      if(!group) return;
+      group.scrollIntoView({behavior:'smooth', block:'start'});
+      var cards = group.querySelectorAll('.activity-card');
+      cards.forEach(function(c){
+        c.classList.add('highlight');
+        setTimeout(function(){ c.classList.remove('highlight'); }, 1400);
+      });
+    });
+  });
+
+  var questions = [
+    "What do you call a baby pumpkin?",
+    "What season comes right after summer?",
+    "What do squirrels collect for winter?",
+    "What color do leaves turn before they fall?",
+    "What holiday do we celebrate at the end of October?",
+    "What do you carve on Halloween?",
+    "What hot drink is made from apples and spices?",
+    "What do you call a scarecrow's favorite fruit? (Straw-berries!)"
+  ];
+  var wheel = document.getElementById('triviaWheel');
+  var spinBtn = document.getElementById('spinBtn');
+  var resultEl = document.getElementById('wheel-result');
+  var currentRotation = 0;
+  spinBtn.addEventListener('click', function(){
+    var extra = 1080 + Math.floor(Math.random()*360);
+    currentRotation += extra;
+    wheel.style.transform = 'rotate('+currentRotation+'deg)';
+    resultEl.textContent = '';
+    setTimeout(function(){
+      var q = questions[Math.floor(Math.random()*questions.length)];
+      resultEl.textContent = q;
+    }, 2200);
+  });
+</script>
+
 </body>
 </html>
